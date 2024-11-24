@@ -25,43 +25,102 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		 
+		while (x2 > 0) {
+			x1++;
+			x2--;
+		} while (x2 < 0 ) {
+			x1--;
+			x2++;
+		}
+		return x1;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		while (x2 > 0) {
+			x1--;
+			x2--;
+		} while (x2 < 0){
+			x1++;
+			x2++;
+		}
+		return x1;
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int result = 0; 
+		boolean isNegative = false;
+
+		if (x2 < 0 ) {
+
+			isNegative = true;
+			x2 = minus(0, x2);
+
+		}
+		while (x2 > 0) {
+			 result = plus(result, x1);
+			 x2--;
+			
+		}
+		if (isNegative) {
+			return minus(0, result);
+		} else {
+			return result;
+		}
+		
 	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+		int result =1;
+		while (n >=0 ) {
+			result = times(result, x);
+			n--;
+		}
+		return result;
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		if (x2 == 0) {
+			System.out.println("Cannot divide by zero");
+			return 0;
+		}
+		int divisionResult = 0;
+		//crate a varibale that checks when the two x1,x2 are identical it returnes true. 
+		boolean isNegative = (x1 < 0) != (x2 < 0);
+
+		if (!isNegative){
+			x1 = x1 < 0 ? minus(0, x1) : x1;
+			x2 = x2 < 0 ? minus(0, x2) : x2;
+		}
+		while (x1 >= x2) {
+            x1 = minus(x1, x2);
+            divisionResult++;
+        }
+
+        return isNegative ? minus(0, divisionResult) : divisionResult;
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+
+	int quotient = div(x1, x2); 
+    int remainder = minus(x1, times(quotient, x2)); 
+    return remainder; 
+
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
+		int sqrtx = 0;
+		while (times (sqrtx, sqrtx) <= x) {
+			sqrtx++;
+		}
+		return minus(sqrtx, 1);
 	}	  	  
 }
+
+
