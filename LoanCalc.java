@@ -20,8 +20,6 @@ public class LoanCalc {
 		System.out.println((int) bisectionSolver(loan, rate, n, epsilon));
 		System.out.println("number of iterations: " + iterationCounter);
 	}
-
-	
 	private static double endBalance(double loan, double rate, int n, double payment) {	
         double balance = loan;
         rate = rate / 100; 
@@ -31,26 +29,22 @@ public class LoanCalc {
         } return balance;
 	
 	}
-
-	
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {
-        double payment = loan / (n * 2); 
+        double payment = loan / n ; 
         iterationCounter = 0;  
-        while (iterationCounter < 1000000) {
-            double balance = endBalance(loan, rate, n, payment);
-            if ((balance < 0 ? -balance : balance) <= epsilon) {
-                return payment;
-            }
-            payment += epsilon; 
-            if (payment > loan*2) { 
-                System.out.println("Error: Payment exceeded loan amount.");
+        double balance = loan;
+        while (balance >= epsilon) {
+            balance = endBalance(loan, rate, n, payment);
+            if (balance <= epsilon){
                 break;
-            } 
-            iterationCounter++;
+            }else{
+            payment += epsilon;
+            balance = loan;
             }
-            System.out.println("Brute force search failed to converge.");
-            return -1; 
-	}
+            iterationCounter++;
+        }
+        return payment;
+    }
 
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
         double low = loan / n; 
@@ -71,5 +65,6 @@ public class LoanCalc {
     }
 }
 	
+
 
 
