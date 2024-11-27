@@ -63,13 +63,14 @@ public class Anagram {
 		for(int i=0; i < str.length(); i++){
 			char currentChar = str.charAt(i);
 			if((currentChar >= 'A' && currentChar <= 'Z')||(currentChar >= 'a' && currentChar <= 'z')){
+				 // Convert uppercase letters to lowercase
 				if (currentChar >= 'A' && currentChar <= 'Z') {
 					currentChar = (char) (currentChar + 32);
 				} 
 				result += currentChar;
-				if (currentChar == ' '){
+				} else if (currentChar == ' '){
 					result +=currentChar;
-				}			
+						
 			} 
 		}
 		return result;
