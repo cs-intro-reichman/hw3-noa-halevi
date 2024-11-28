@@ -27,11 +27,13 @@ public class Anagram {
 
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
-		str1 = preProcess(str1);
-    	str2 = preProcess(str2);
+		str1 = removeSpaces(preProcess(str1));
+        str2 = removeSpaces(preProcess(str2));
+
 		if(str1.length() != str2.length()){
 			return false;
 		}
+
 		for (int i=0; i < str1.length(); i++){
 			char currentChar = str1.charAt(i);
 			int count1 = 0;
@@ -50,7 +52,7 @@ public class Anagram {
 			if (count1 != count2) {
 				return false;
 			}
-		}	
+		}
 		return true;
 	}
 	   
@@ -70,6 +72,16 @@ public class Anagram {
         }
         return result;
 	} 
+	public static String removeSpaces(String str) {
+		String result = "";
+		for (int i = 0; i < str.length(); i++) {
+			if (str.charAt(i) != ' ') {
+				result += str.charAt(i);
+			}
+		}
+		return result;
+	}
+	
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
@@ -91,5 +103,6 @@ public class Anagram {
 		}
 		return result;	
 	}
-}	
+}
+	
 
