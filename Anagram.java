@@ -36,11 +36,12 @@ public class Anagram {
 			char currentChar = str1.charAt(i);
 			int count1 = 0;
 			int count2 = 0;
+			// Count occurrences in str1
 			for(int j=0; j <str1.length(); j++){
 				if (str1.charAt(j) == currentChar) {
 					count1++;
 				}
-			} 
+			} // Count occurrences in str2
 			for (int j = 0; j < str2.length(); j++) {
 				if (str2.charAt(j) == currentChar) {
 					count2++;
@@ -60,18 +61,14 @@ public class Anagram {
 		String result = "";
 		for(int i=0; i < str.length(); i++){
 			char currentChar = str.charAt(i);
-			if((currentChar >= 'A' && currentChar <= 'Z')||(currentChar >= 'a' && currentChar <= 'z')){
-				 // Convert uppercase letters to lowercase
-				if (currentChar >= 'A' && currentChar <= 'Z') {
-					currentChar = (char) (currentChar + 32);
-				} 
-				result += currentChar;
-				} else if (currentChar == ' '){
-					result +=currentChar;
-						
-			} 
-		}
-		return result;
+			if ((currentChar >= 'A' && currentChar <= 'Z')) {
+                currentChar = (char) (currentChar + 32); // Convert to lowercase
+            }
+            if ((currentChar >= 'a' && currentChar <= 'z') || currentChar == ' ') {
+                result += currentChar;
+            }
+        }
+        return result;
 	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
@@ -84,7 +81,6 @@ public class Anagram {
 			randomPosition = (int) ((Math.random() * remaining.length()));
 			char randomChar = remaining.charAt(randomPosition);
 			result += randomChar;
-
 			String newRemaining = "";
 			for (int i = 0; i < remaining.length(); i++) {
 				if (i != randomPosition) {
